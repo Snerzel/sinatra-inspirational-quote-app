@@ -20,14 +20,16 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-       
+        #redirect "/users/#{@user.id}" 
     end
 
 
     post '/users' do
         if params[:name] != "" && params[:email] != "" && params != ""
             @user = User.create(params)
-            redirect '/users/:#{@user.id}'
+            session[:user_id] = @user.id
+            redirect "users/#{@user.id}"
+            
             
         else
             redirect '/signup'
@@ -38,6 +40,11 @@ class UsersController < ApplicationController
         
         @user = User.find_by(id: params[:id])
         erb :'/users/user_home_page'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect '/'
     end
 
 end
