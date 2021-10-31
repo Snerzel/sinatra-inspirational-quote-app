@@ -19,12 +19,19 @@ class UsersController < ApplicationController
         erb :signup
     end
 
+    # post '/signup' do
+    #     @user = User.create(params)
+    #     if @user.authenticate(params[:password])
+    #         session[:user_id] = @user.id
+    #         puts session
+    #         redirect "users/#{@user.id}" 
+    #     else
+    #         redirect '/signup'
+    #     end
+    # end
+
+
     post '/signup' do
-        #redirect "/users/#{@user.id}" 
-    end
-
-
-    post '/users' do
         if params[:name] != "" && params[:email] != "" && params != ""
             @user = User.create(params)
             session[:user_id] = @user.id
