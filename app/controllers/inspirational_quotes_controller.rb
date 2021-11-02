@@ -23,6 +23,7 @@ class InspirationalQuotesController < ApplicationController
     end
 
     get '/inspirational_quotes/:id/edit' do
+        @inspirational_quote = InspirationalQuote.find(params[:id])
         erb :'/inspirational_quotes/edit'
     end
 end
