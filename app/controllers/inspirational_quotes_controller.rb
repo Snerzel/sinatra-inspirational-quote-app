@@ -10,9 +10,11 @@ class InspirationalQuotesController < ApplicationController
         end
 
         if params[:content] != ""
+            flash[:message] = "Success!!"
             @inspirational_quote = InspirationalQuote.create(content: params[:content], user_id: current_user.id)
             redirect "/inspirational_quotes/#{@inspirational_quote.id}"
         else
+            flash[:message] = "Oops! Can't do that."
             redirect '/inspirational_quotes/new'
         end
     end
