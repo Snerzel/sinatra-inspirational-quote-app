@@ -1,4 +1,7 @@
 <p><%= @inspirational_quote.content %></p>
 
-
+<% if authorized?(@inspirational_quote) %>
 <a href="/inspirational_quotes/<%= @inspirational_quote.id %>/edit">Edit</a>
+
+
+<% end %>
