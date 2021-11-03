@@ -2,6 +2,11 @@
 
 <% if authorized?(@inspirational_quote) %>
 <a href="/inspirational_quotes/<%= @inspirational_quote.id %>/edit">Edit</a>
+<br></br>
 
+<form class="" action="/inspirational_quotes/<%= @inspirational_quote.id %>" method="post">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" name="" value="Delete">
+</form>
 
 <% end %>

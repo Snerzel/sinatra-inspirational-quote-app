@@ -38,7 +38,7 @@ class InspirationalQuotesController < ApplicationController
     patch '/inspirational_quotes/:id' do
         inspirational_quote_helper
         if logged_in?
-            if authorized?(inspirational_quote)
+            if authorized?(inspirational_quote) && params[:content] != ""
                 @inspirational_quote.update(content: params[:content])
                 redirect "/inspirational_quotes/#{@inspirational_quote.id}"
             else
@@ -52,6 +52,16 @@ class InspirationalQuotesController < ApplicationController
     get '/inspirational_quotes' do
         @inspirational_quotes = InspirationalQuote.all
          erb :'inspirational_quotes/index'
+    end
+
+    delete '/inspirational_quotes/:id' do
+        inspirational_quote_helper
+        if authorized?(@inspirational_quote)
+            @inspirational_quote.destroy 
+            redirect "/users/#{current_user.id}"
+        else
+            redirect "/users/#{current_user.id}"
+        end
     end
 
     def inspirational_quote_helper
