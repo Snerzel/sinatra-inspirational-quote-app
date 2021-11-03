@@ -18,12 +18,39 @@ class InspirationalQuotesController < ApplicationController
     end
 
     get '/inspirational_quotes/:id' do
-        @inspirational_quote = InspirationalQuote.find(params[:id])
+        inspirational_quote_helper
         erb :'/inspirational_quotes/show'
     end
 
     get '/inspirational_quotes/:id/edit' do
+        inspirational_quote_helper
+        if logged_in?
+            if @inspirational_quote.user == current_user
+                erb :'/inspirational_quotes/edit'
+            else
+                redirect '/login'
+            end
+        else
+            redirect '/welcome'
+        end
+    end
+
+    patch '/inspirational_quotes/:id' do
+        inspirational_quote_helper
+        if logged_in?
+            if @inspirational_quote.user == current_user
+                @inspirational_quote.update(content: params[:content])
+                redirect "/inspirational_quotes/#{@inspirational_quote.id}"
+            else
+                redirect '/login'
+            end
+        else
+            redirect '/welcome'
+        end
+    end
+
+
+    def inspirational_quote_helper
         @inspirational_quote = InspirationalQuote.find(params[:id])
-        erb :'/inspirational_quotes/edit'
     end
 end

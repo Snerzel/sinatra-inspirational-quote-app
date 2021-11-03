@@ -1,7 +1,8 @@
 <h2>Edit your quote</h2>
 
-<form class="" action="/inspirational_quotes" method="post">
+<form class="" action="/inspirational_quotes/<%= @inspirational_quote.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
     <label for="content">Enter your quote here:</label>
-    <input type="text" name="content" value="<%= @inspirational_quote.content %>">
+    <textarea type="text" style="width:auto; height:auto;" name="content"><%= @inspirational_quote.content %></textarea>
     <input type="submit" name="" value="submit">
     </form>
