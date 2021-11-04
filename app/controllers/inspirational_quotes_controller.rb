@@ -14,7 +14,7 @@ class InspirationalQuotesController < ApplicationController
             @inspirational_quote = InspirationalQuote.create(content: params[:content], user_id: current_user.id)
             redirect "/inspirational_quotes/#{@inspirational_quote.id}"
         else
-            flash[:message] = "Oops! Can't do that."
+            flash[:error] = "Oops! Can't do that."
             redirect '/inspirational_quotes/new'
         end
     end

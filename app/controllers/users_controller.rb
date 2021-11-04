@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             puts session
             redirect "users/#{@user.id}"
             else
-                flash[:message] = "Invalid input! Please try again or go back and sign up!"
+                flash[:error] = "Invalid input! Please try again or go back and sign up!"
                 redirect '/login'
         end
     end
