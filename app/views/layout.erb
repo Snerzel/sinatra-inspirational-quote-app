@@ -17,9 +17,7 @@
     <div class="nav">
     <% if logged_in? %>
       <a href="/logout">Logout</a>
-      <a href="/inspirational_quotes">See all quotes</a>
-      <a href="/new_quotes">Quotes of the day</a>
-      <a href="/inspirational_quotes/new"> Write a Quote!</a>
+      
       <% end %>
       </div>
       
@@ -31,7 +29,11 @@
         <p style="color: red;"><%= flash[:error] %></p>
      <% end %>
         <%= yield %>
-        
+        <% if logged_in? %>
+      
+      <a href="/inspirational_quotes">See all quotes</a>
+      <a href="/inspirational_quotes/new"> Write a Quote!</a>
+      <% end %>
       <footer class="branding">
         <small>&copy; 2021 <strong>SinatraInspirationalQuoteApp</strong></small>
       </footer>

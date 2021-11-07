@@ -1,5 +1,5 @@
 <% @inspirational_quotes.each do |inspirational_quote| %>
-    <h5><a href="/inspirational_quotes/<%= inspirational_quote.id %>"><%= inspirational_quote.created_at %></a></h5>
+    <h5><a href="/inspirational_quotes/<%= inspirational_quote.id %>"><%= inspirational_quote.readable_timestamps %></a></h5>
     <h4><%= inspirational_quote.user.name %></h4>
     <p><%= inspirational_quote.content %></p>
     <br></br>
