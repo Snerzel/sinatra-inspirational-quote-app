@@ -27,7 +27,7 @@ class InspirationalQuotesController < ApplicationController
     get '/inspirational_quotes/:id/edit' do
         inspirational_quote_helper
         if logged_in?
-            if authorized?(inspirational_quote)
+            if authorized?(@inspirational_quote)
                 erb :'/inspirational_quotes/edit'
             else
                 redirect '/login'
@@ -40,7 +40,7 @@ class InspirationalQuotesController < ApplicationController
     patch '/inspirational_quotes/:id' do
         inspirational_quote_helper
         if logged_in?
-            if authorized?(inspirational_quote) && params[:content] != ""
+            if authorized?(@inspirational_quote) && params[:content] != ""
                 @inspirational_quote.update(content: params[:content])
                 redirect "/inspirational_quotes/#{@inspirational_quote.id}"
             else
@@ -69,4 +69,6 @@ class InspirationalQuotesController < ApplicationController
     def inspirational_quote_helper
         @inspirational_quote = InspirationalQuote.find(params[:id])
     end
+
+    
 end
